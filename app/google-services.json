@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "735227175705",
+    "firebase_url": "https://checkinnow.firebaseio.com",
+    "project_id": "checkinnow",
+    "storage_bucket": "checkinnow.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735227175705:android:97a5dce80d70559b",
+        "android_client_info": {
+          "package_name": "com.example.checkinnow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735227175705-uemsda5fja7ia1tc84siqa3pc8ujjhoa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.checkinnow",
+            "certificate_hash": "54f96dbd44473582bc7c15ebeaa46bc2afe5a0e3"
+          }
+        },
+        {
+          "client_id": "735227175705-q3v52c02oj40s5uia2c19tpabfgdnhud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5zb8Q2TqhjdH36ppWIhsPcYk99bc7SYU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735227175705-q3v52c02oj40s5uia2c19tpabfgdnhud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
