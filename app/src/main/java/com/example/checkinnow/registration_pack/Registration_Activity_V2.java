@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.checkinnow.Employee;
 import com.example.checkinnow.R;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -337,7 +338,10 @@ public class Registration_Activity_V2 extends AppCompatActivity {
                                         //here we can create document for first time user.
 
 
-                                        
+                                        Employee this_user_employee = new Employee(userNameGlobal,userPhoneGlobal);
+
+                                        cR_uid_employee_this.document(userPhoneGlobal).set(this_user_employee);
+
 
                                     }
 
