@@ -342,7 +342,10 @@ public class Registration_Activity_V2 extends AppCompatActivity {
 
                                         cR_uid_employee_this.document(userPhoneGlobal).set(this_user_employee);
 
+                                        Toast.makeText(Registration_Activity_V2.this,"success registration",
+                                                Toast.LENGTH_LONG).show();
 
+                                        
                                     }
 
 
