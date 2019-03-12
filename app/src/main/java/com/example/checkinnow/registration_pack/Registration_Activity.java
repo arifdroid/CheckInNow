@@ -29,6 +29,8 @@ public class Registration_Activity extends AppCompatActivity {
 
     private Button buttonCheckAdmin;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,9 @@ public class Registration_Activity extends AppCompatActivity {
         textViewMessage = findViewById(R.id.registrationn_textViewMessageID);
 
         buttonCheckAdmin = findViewById(R.id.registration_button_adminID);
+
+
+
 
         buttonCheckAdmin.setOnClickListener(new View.OnClickListener() {
 
@@ -65,7 +70,7 @@ public class Registration_Activity extends AppCompatActivity {
 
     }
 
-    private void checkAdminDetail(String name_admin, String phone_admin) {
+    private void checkAdminDetail(final String name_admin, final String phone_admin) {
 
         //check if admin exist in collection
         CollectionReference collectionReference =FirebaseFirestore.getInstance().collection("admins_offices");
@@ -83,9 +88,11 @@ public class Registration_Activity extends AppCompatActivity {
                 }else {
 
                     //admin exist , log to next activity
+                    //we need to pass admin name and phone using
 
                     Intent intent = new Intent(Registration_Activity.this, Registration_Activity_V2.class);
-
+                    intent.putExtra("admin_name",name_admin);
+                    intent.putExtra("admin_phone",phone_admin);
                     startActivity(intent);
 
 
