@@ -31,6 +31,14 @@ public class Employee {
         this.ref_score_card=ref_score_card;
         this.rating=rating;
     }
+
+    public Employee(String name, String phone, String ref_score_card,String imageurl){
+        this.name = name;
+        this.phone = phone;
+        this.ref_score_card=ref_score_card;
+        this.imageurl=imageurl;
+    }
+
     public Employee(String name, String phone, float rating, String imageurl, String ref_score_card, String uid) {
         this.name = name;
         this.phone = phone;

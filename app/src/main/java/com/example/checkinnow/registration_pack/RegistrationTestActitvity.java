@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.checkinnow.Employee;
 import com.example.checkinnow.R;
+import com.example.checkinnow.sqlite_creation.FS_to_SQLite_DBHelper;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,8 +55,8 @@ public class RegistrationTestActitvity extends AppCompatActivity {
     private boolean foundWhichAdmin;
 
     //loading all employees in one admin, for sqlite creation
-
     private ArrayList<Employee> employeeArrayListLoaded;
+    //
 
 
 
@@ -229,7 +230,11 @@ public class RegistrationTestActitvity extends AppCompatActivity {
                                             //score card reference also saved in document
                                             String docName = "card_here"+userPhoneGlobal;
 
-                                            Employee this_user_employee = new Employee(userNameGlobal,userPhoneGlobal,docName);
+                                            //set imae url
+
+                                            String imageurl = "test";
+
+                                            Employee this_user_employee = new Employee(userNameGlobal,userPhoneGlobal,docName,imageurl);
 
                                             cR_uid_employee_this.document(userPhoneGlobal).set(this_user_employee);
 
@@ -259,6 +264,9 @@ public class RegistrationTestActitvity extends AppCompatActivity {
 
 
                                     }else {
+
+                                        Toast.makeText(RegistrationTestActitvity.this,"task fail,try again",
+                                                Toast.LENGTH_LONG).show();
 
 
 
@@ -389,9 +397,13 @@ public class RegistrationTestActitvity extends AppCompatActivity {
 
 
 
-                    } //finish load all data.
+                    } //finish load all data., create database here.
 
 
+                   FS_to_SQLite_DBHelper.getInstance(RegistrationTestActitvity.this,employeeArrayListLoaded);
+
+
+                    Toast.makeText(RegistrationTestActitvity.this,"database createed", Toast.LENGTH_LONG).show();
 
 
 
@@ -399,6 +411,8 @@ public class RegistrationTestActitvity extends AppCompatActivity {
 
 
                 }else { //somehow task is failed, we must load again to create sqlite.
+
+                    Toast.makeText(RegistrationTestActitvity.this,"database creation fail", Toast.LENGTH_LONG).show();
 
 
                 }
