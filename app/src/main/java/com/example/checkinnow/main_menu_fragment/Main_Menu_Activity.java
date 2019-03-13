@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -26,17 +27,21 @@ public class Main_Menu_Activity extends AppCompatActivity {
 
                 case R.id.navigation_home:
 
+                    Log.i("check fragment :"," 2 activity");
                     selectedFragment = new HomeFragment();
 
-                    return true;
+                    break;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
-                    return true;
+                    break;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);
-                    return true;
+                    break;
             }
-            return false;
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentID,
+                    selectedFragment).commit();
+
+            return true;
         }
     };
 
@@ -45,9 +50,15 @@ public class Main_Menu_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__menu_);
 
+        Log.i("check fragment :"," 1 activity");
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentID,
+                    new HomeFragment()).commit();
+        }
     }
 
 }

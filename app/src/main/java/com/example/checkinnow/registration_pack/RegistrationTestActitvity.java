@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.checkinnow.Employee;
 import com.example.checkinnow.R;
+import com.example.checkinnow.main_menu_fragment.Main_Menu_Activity;
 import com.example.checkinnow.sqlite_creation.FS_to_SQLite_DBHelper;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,6 +57,7 @@ public class RegistrationTestActitvity extends AppCompatActivity {
 
     //loading all employees in one admin, for sqlite creation
     private ArrayList<Employee> employeeArrayListLoaded;
+    private boolean databaseCreatedNow;
     //
 
 
@@ -65,7 +67,7 @@ public class RegistrationTestActitvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_test_actitvity);
-
+        databaseCreatedNow=false;
         whichAdminEmployeeGlobal ="";
         codeFromFirebase="";
         foundWhichAdmin=false;
@@ -304,6 +306,21 @@ public class RegistrationTestActitvity extends AppCompatActivity {
                     }
 
 
+                    while (!databaseCreatedNow){
+                        //database has created, move to next activity
+
+
+
+                        if(databaseCreatedNow) {
+
+
+                            break;
+
+                        }
+                    }
+
+                    nextPlease();
+
 
                 }
             }
@@ -325,6 +342,12 @@ public class RegistrationTestActitvity extends AppCompatActivity {
 
 
 
+    }
+
+    private void nextPlease() {
+
+        Intent intent = new Intent(RegistrationTestActitvity.this, Main_Menu_Activity.class);
+        startActivity(intent);
     }
 
     private void settingupSQLiteTable() {
@@ -405,7 +428,7 @@ public class RegistrationTestActitvity extends AppCompatActivity {
 
                     Toast.makeText(RegistrationTestActitvity.this,"database createed", Toast.LENGTH_LONG).show();
 
-
+                    databaseCreatedNow=true;
 
 
 

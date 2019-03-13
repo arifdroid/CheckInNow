@@ -18,6 +18,7 @@ import static com.example.checkinnow.sqlite_creation.FS_SQLite_Contract.*;
 public class FS_to_SQLite_DBHelper extends SQLiteOpenHelper {
 
 
+    private Context mcontext;
 
     private static FS_to_SQLite_DBHelper instance;
 
@@ -27,6 +28,8 @@ public class FS_to_SQLite_DBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION=1;
 
+    private Cursor cursor;
+
     //this is liss from firestore we created
     private static ArrayList<Employee> liss;
 
@@ -34,6 +37,7 @@ public class FS_to_SQLite_DBHelper extends SQLiteOpenHelper {
     public FS_to_SQLite_DBHelper(Context context) {
         super(context, DATABASE_NAME , null, DATABASE_VERSION);
     }
+
 
     public static synchronized FS_to_SQLite_DBHelper getInstance(Context context){
 
