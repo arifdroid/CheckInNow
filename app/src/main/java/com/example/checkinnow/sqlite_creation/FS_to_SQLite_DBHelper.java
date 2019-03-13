@@ -35,6 +35,15 @@ public class FS_to_SQLite_DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME , null, DATABASE_VERSION);
     }
 
+    public static synchronized FS_to_SQLite_DBHelper getInstance(Context context){
+
+        if(instance==null){
+            instance = new FS_to_SQLite_DBHelper(context);
+        }
+        return instance;
+
+    }
+
     public static synchronized FS_to_SQLite_DBHelper getInstance(Context context, ArrayList<Employee> liss){
 
         if(instance==null){

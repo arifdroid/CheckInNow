@@ -3,6 +3,7 @@ package com.example.checkinnow.main_menu_fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -18,9 +19,15 @@ public class Main_Menu_Activity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Fragment selectedFragment = null;
+
             switch (item.getItemId()) {
+
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+
+                    selectedFragment = new HomeFragment();
+
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
