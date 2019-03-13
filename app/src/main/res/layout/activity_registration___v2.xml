@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="184dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="your phone +601* .."
@@ -26,7 +26,7 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrationV2_editText_userNameID" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/registrationV2_editText_CodeID"
@@ -71,9 +71,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Log In"
-        app:layout_constraintEnd_toEndOf="@+id/registrationV2_editText_CodeID"
+        app:layout_constraintEnd_toEndOf="@+id/registrationTest_editText_CodeID"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/registrationV2_textViewMessageID" />
+        app:layout_constraintTop_toBottomOf="@+id/registrationTest_textViewMessageID" />
 
     <Button
         android:id="@+id/registrationV2_buttonGetCodeID"
@@ -84,8 +84,8 @@
         android:layout_marginEnd="8dp"
         android:text="get code"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/registrationV2_editText_CodeID"
-        app:layout_constraintTop_toBottomOf="@+id/registrationV2_textViewMessageID" />
+        app:layout_constraintStart_toStartOf="@+id/registrationTest_editText_CodeID"
+        app:layout_constraintTop_toBottomOf="@+id/registrationTest_textViewMessageID" />
 
     <TextView
         android:id="@+id/registrationV2_textViewMessageID"
@@ -97,6 +97,6 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrationV2_editText_CodeID" />
+        app:layout_constraintTop_toBottomOf="@+id/registrationTest_editText_CodeID" />
 
 </android.support.constraint.ConstraintLayout>

@@ -12,14 +12,18 @@ import android.widget.Toast;
 
 import com.example.checkinnow.R;
 import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class Registration_Activity extends AppCompatActivity {
+
+
 
 
     //here we check whether admin doc exist, in admins collections
@@ -73,41 +77,98 @@ public class Registration_Activity extends AppCompatActivity {
     private void checkAdminDetail(final String name_admin, final String phone_admin) {
 
         //check if admin exist in collection
-        CollectionReference collectionReference =FirebaseFirestore.getInstance().collection("admins_offices");
+        final CollectionReference collectionReference =FirebaseFirestore.getInstance().collection("admins_offices");
 
         Query query_admin = collectionReference.whereEqualTo("admin_phone",phone_admin);
 
-        query_admin.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        query_admin.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                if(queryDocumentSnapshots.size()==0){
+                if(task.isSuccessful()) {
 
-                    noAdminDetected();
+                    QuerySnapshot querySnapshot = task.getResult();
+
+                    if (querySnapshot.size() > 0) {
+
+//                if(queryDocumentSnapshots.size()==0){
+//
+//                    noAdminDetected();
+//
+//                }else {
+
+                        //admin exist , log to next activity
+                        //we need to pass admin name and phone using
+                        //now we need to set name as well, before passing
+
+                        Query query_nameAdmin = collectionReference.whereEqualTo("admin_name", name_admin);
+
+                        query_nameAdmin.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                                if (task.isSuccessful()) {
+
+                                    QuerySnapshot querySnapshot = task.getResult();
+
+                                    if (querySnapshot.size() == 1) {    //means valid and go next
+
+                                        //Intent intent = new Intent(Registration_Activity.this, Registration_Activity_V2.class);
+
+                                        Intent intent = new Intent(Registration_Activity.this,RegistrationTestActitvity.class);
+
+                                        intent.putExtra("admin_name", name_admin);
+                                        intent.putExtra("admin_phone", phone_admin);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                                        startActivity(intent);
+
+                                    } else if (querySnapshot.size() == 0) {
+
+                                        textViewMessage.setText("admin not exist");
+                                        noAdminDetected();
+
+                                    } else {
+
+                                        textViewMessage.setText("please contact admin");
+                                    }
+
+
+                                } else { //task is not succesful
+
+                                    textViewMessage.setText("please try again");
+
+                                }
+
+
+                            }
+                        });
+
+
+                    }
+
+                    else {
+
+                        noAdminDetected();
+
+                    }
 
                 }else {
 
-                    //admin exist , log to next activity
-                    //we need to pass admin name and phone using
-
-                    Intent intent = new Intent(Registration_Activity.this, Registration_Activity_V2.class);
-                    intent.putExtra("admin_name",name_admin);
-                    intent.putExtra("admin_phone",phone_admin);
-                    startActivity(intent);
-
-
+                    //task check phone not succesfull
+                   noAdminDetected();
 
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                    textViewMessage.setText(e.getMessage());
             }
         }).addOnCanceledListener(new OnCanceledListener() {
             @Override
             public void onCanceled() {
-
+                textViewMessage.setText("please check admin phone number again");
             }
         });
 

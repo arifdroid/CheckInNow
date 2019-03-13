@@ -4,7 +4,7 @@ public class Employee {
 
     private String name;
     private String phone;
-    private String rating;
+    private float rating;
     private String imageurl;
     private String ref_score_card;
     private String uid;
@@ -19,7 +19,19 @@ public class Employee {
         this.phone = phone;
     }
 
-    public Employee(String name, String phone, String rating, String imageurl, String ref_score_card, String uid) {
+    public Employee(String name,String phone, String ref_score_card) {
+        this.name = name;
+        this.phone = phone;
+        this.ref_score_card=ref_score_card;
+    }
+
+    public Employee(String name,String phone, String ref_score_card, float rating) {
+        this.name = name;
+        this.phone = phone;
+        this.ref_score_card=ref_score_card;
+        this.rating=rating;
+    }
+    public Employee(String name, String phone, float rating, String imageurl, String ref_score_card, String uid) {
         this.name = name;
         this.phone = phone;
         this.rating = rating;
@@ -44,11 +56,11 @@ public class Employee {
         this.phone = phone;
     }
 
-    public String getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
