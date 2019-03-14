@@ -13,7 +13,7 @@ import com.example.checkinnow.R;
 
 public class Main_Menu_Activity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -28,14 +28,15 @@ public class Main_Menu_Activity extends AppCompatActivity {
                 case R.id.navigation_home:
 
                     Log.i("check fragment :"," 2 activity");
-                    selectedFragment = new HomeFragment();
+                    selectedFragment = new DashBoardFragment();
 
                     break;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+
+                    selectedFragment = new Score_Friend_Fragment();
                     break;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    selectedFragment = new Score_Friend_Fragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentID,
@@ -51,13 +52,12 @@ public class Main_Menu_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main__menu_);
 
         Log.i("check fragment :"," 1 activity");
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentID,
-                    new HomeFragment()).commit();
+                    new Score_Friend_Fragment()).commit();
         }
     }
 

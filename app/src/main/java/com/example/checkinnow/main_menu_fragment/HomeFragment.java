@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        recyclerAdapter = new CustomAdapterForHomeFragment(listReturnFromSQLite);
+       // recyclerAdapter = new CustomAdapterForHomeFragment(listReturnFromSQLite);
 
 
         recyclerView.setAdapter(recyclerAdapter);
